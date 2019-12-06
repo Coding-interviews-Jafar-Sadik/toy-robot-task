@@ -14,19 +14,26 @@ public class ToyRobot {
     private int robotY = 0;
 
     public boolean execute(String command) {
-        final Matcher matcher = commandPattern.matcher(command);
+        if (command.startsWith("place")) {
+            final Matcher matcher = commandPattern.matcher(command);
+            if (matcher.matches()) {
+                int x = Integer.parseInt(matcher.group(1));
+                int y = Integer.parseInt(matcher.group(2));
 
-        if (matcher.matches()) {
-            int x = Integer.parseInt(matcher.group(1));
-            int y = Integer.parseInt(matcher.group(2));
+                if (!inBounds(x, y)) {
+                    return false;
+                }
 
-            if (!inBounds(x, y)) {
-                return false;
+                this.robotX = x;
+                this.robotY = y;
+                this.robotOnTable = true;
             }
+        } else if (command.startsWith("move")) {
+            robotY++;
+        } else if (command.startsWith("left")) {
 
-            this.robotX = x;
-            this.robotY = y;
-            this.robotOnTable = true;
+        } else {
+            return false;
         }
 
         return robotOnTable;

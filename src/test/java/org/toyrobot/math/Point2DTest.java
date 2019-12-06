@@ -18,4 +18,9 @@ public class Point2DTest {
         assertEquals(10, point2D.x);
         assertEquals(4, point2D.y);
     }
+
+    @Test
+    public void toStringTest() {
+        assertEquals("Point2D{x=10, y=4}", point2d(10, 4).toString());
+    }
 }
