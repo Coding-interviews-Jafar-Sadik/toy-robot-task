@@ -11,6 +11,10 @@ public final class Point2D {
         this.y = y;
     }
 
+    public static Point2D point2d(int x, int y) {
+        return new Point2D(x, y);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

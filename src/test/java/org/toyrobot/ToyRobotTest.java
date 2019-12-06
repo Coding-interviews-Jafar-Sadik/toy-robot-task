@@ -1,7 +1,7 @@
 package org.toyrobot;
 
 import org.junit.Test;
-import org.toyrobot.math.Point2D;
+import static org.toyrobot.math.Point2D.point2d;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
@@ -54,10 +54,6 @@ public class ToyRobotTest {
         assertRobotCommandExecuted(toyRobot.execute("left"));
         assertRobotCommandExecuted(toyRobot.execute("place 1,4,NORTH"));
         assertThat(toyRobot.getPosition()).isEqualTo(point2d(1, 4));
-    }
-
-    private Point2D point2d(int x, int y) {
-        return new Point2D(x, y);
     }
 
     private void assertRobotCommandIgnored(boolean robotCommandStatus) throws AssertionError {
