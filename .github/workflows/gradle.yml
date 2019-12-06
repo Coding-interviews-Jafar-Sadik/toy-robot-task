@@ -15,4 +15,4 @@ jobs:
         java-version: 11.0.5
     
     - name: Test gradle project
-      run: ./gradlew test
+      run: gradle test
