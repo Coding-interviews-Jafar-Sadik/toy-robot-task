@@ -36,23 +36,31 @@ public class ToyRobot {
             }
         } else if (robotOnTable) {
             if (command.startsWith("move")) {
+                int newX = x;
+                int newY = y;
                 switch (direction) {
                     case NORTH:
-                        y++;
+                        newY++;
                         break;
 
                     case SOUTH:
-                        y--;
+                        newY--;
                         break;
 
                     case EAST:
-                        x++;
+                        newX++;
                         break;
 
                     case WEST:
-                        x--;
+                        newX--;
                         break;
                 }
+
+                if (!inBounds(newX, newY)) {
+                    return false;
+                }
+                this.x = newX;
+                this.y = newY;
             } else if (command.startsWith("left")) {
 
             } else {
