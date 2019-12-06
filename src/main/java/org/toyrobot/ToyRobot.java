@@ -35,7 +35,23 @@ public class ToyRobot {
                 this.robotOnTable = true;
             }
         } else if (command.startsWith("move")) {
-            y++;
+            switch (direction) {
+                case NORTH:
+                    y++;
+                    break;
+
+                case SOUTH:
+                    y--;
+                    break;
+
+                case EAST:
+                    x++;
+                    break;
+
+                case WEST:
+                    x--;
+                    break;
+            }
         } else if (command.startsWith("left")) {
 
         } else {

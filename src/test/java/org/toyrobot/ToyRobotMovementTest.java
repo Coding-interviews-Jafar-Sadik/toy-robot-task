@@ -21,4 +21,25 @@ public class ToyRobotMovementTest extends BaseToyRobotTest {
         toyRobot.execute("move");
         assertThat(toyRobot.getPosition()).isEqualTo(point2d(3, 2));
     }
+
+    @Test
+    public void shouldMoveRobotSouthByOneUnit() {
+        toyRobot.execute("place 0,4,SOUTH");
+        toyRobot.execute("move");
+        assertThat(toyRobot.getPosition()).isEqualTo(point2d(0, 3));
+    }
+
+    @Test
+    public void shouldMoveRobotWestByOneUnit() {
+        toyRobot.execute("place 4,0,WEST");
+        toyRobot.execute("move");
+        assertThat(toyRobot.getPosition()).isEqualTo(point2d(3, 0));
+    }
+
+    @Test
+    public void shouldMoveRobotEastByOneUnit() {
+        toyRobot.execute("place 0,0,EAST");
+        toyRobot.execute("move");
+        assertThat(toyRobot.getPosition()).isEqualTo(point2d(1, 0));
+    }
 }
