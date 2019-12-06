@@ -32,6 +32,11 @@ public class ToyRobotTest {
         assertThat(toyRobot.getPosition()).isEqualTo(point2d(0, 4));
     }
 
+    @Test(expected = IllegalStateException.class)
+    public void shouldPreventPlacingOutsideTable() {
+        toyRobot.execute("place 5,5,NORTH");
+    }
+
     private Point2D point2d(int x, int y) {
         return new Point2D(x, y);
     }

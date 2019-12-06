@@ -7,19 +7,32 @@ import java.util.regex.Pattern;
 
 public class ToyRobot {
     private static final Pattern commandPattern = Pattern.compile("place\\s(\\d),(\\d),\\w+");
-    private int x = 0;
-    private int y = 0;
+    public static final int TABLE_SIZE = 5;
+
+    private int robotX = 0;
+    private int robotY = 0;
 
     public void execute(String command) {
         final Matcher matcher = commandPattern.matcher(command);
 
         if (matcher.matches()) {
-            x = Integer.parseInt(matcher.group(1));
-            y = Integer.parseInt(matcher.group(2));
+            int x = Integer.parseInt(matcher.group(1));
+            int y = Integer.parseInt(matcher.group(2));
+
+            if (inBounds(x, y)) {
+                this.robotX = x;
+                this.robotY = y;
+            } else {
+                throw new IllegalStateException("An attempt to the place robot outside of table");
+            }
         }
     }
 
     public Point2D getPosition() {
-        return new Point2D(x, y);
+        return new Point2D(robotX, robotY);
+    }
+
+    private boolean inBounds(int x, int y) {
+        return x >= 0 && y >= 0 && x < TABLE_SIZE && y < TABLE_SIZE;
     }
 }
