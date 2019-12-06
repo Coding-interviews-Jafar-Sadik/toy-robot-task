@@ -33,23 +33,23 @@ public class ToyRobotPlacementTest extends BaseToyRobotTest {
 
     @Test
     public void shouldPreventPlacingRobotOutsideTable() {
-        assertRobotCommandIgnored(toyRobot.execute("place 5,5,NORTH"));
-        assertRobotCommandIgnored(toyRobot.execute("place 5,0,NORTH"));
-        assertRobotCommandIgnored(toyRobot.execute("place 0,5,NORTH"));
+        assertRobotCommandIgnored("place 5,5,NORTH");
+        assertRobotCommandIgnored("place 5,0,NORTH");
+        assertRobotCommandIgnored("place 0,5,NORTH");
     }
 
     @Test
     public void shouldDiscardAllCommandsBeforePlaceCommand() {
-        assertRobotCommandIgnored(toyRobot.execute("move"));
-        assertRobotCommandIgnored(toyRobot.execute("left"));
-        assertRobotCommandExecuted(toyRobot.execute("place 3,3,NORTH"));
+        assertRobotCommandIgnored("move");
+        assertRobotCommandIgnored("left");
+        assertRobotCommandExecuted("place 3,3,NORTH");
     }
 
     @Test
     public void shouldAllowCommandsAfterPlaceCommand() {
         toyRobot.execute("place 3,3,NORTH");
-        assertRobotCommandExecuted(toyRobot.execute("left"));
-        assertRobotCommandExecuted(toyRobot.execute("place 1,4,NORTH"));
+        assertRobotCommandExecuted("left");
+        assertRobotCommandExecuted("place 1,4,NORTH");
         assertThat(toyRobot.getPosition()).isEqualTo(point2d(1, 4));
     }
 }

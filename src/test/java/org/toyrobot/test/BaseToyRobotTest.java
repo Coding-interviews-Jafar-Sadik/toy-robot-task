@@ -8,11 +8,11 @@ import static org.junit.Assert.assertTrue;
 public abstract class BaseToyRobotTest {
     protected final ToyRobot toyRobot = new ToyRobot();
 
-    protected void assertRobotCommandIgnored(boolean robotCommandStatus) throws AssertionError {
-        assertFalse("Expected robot command to be ignored", robotCommandStatus);
+    protected void assertRobotCommandIgnored(String robotCommand) throws AssertionError {
+        assertFalse("Expected robot command to be ignored: " + robotCommand, toyRobot.execute(robotCommand));
     }
 
-    protected void assertRobotCommandExecuted(boolean robotCommandStatus) throws AssertionError {
-        assertTrue("Expected robot command to be executed", robotCommandStatus);
+    protected void assertRobotCommandExecuted(String robotCommand) throws AssertionError {
+        assertTrue("Expected robot command to be executed: " + robotCommand, toyRobot.execute(robotCommand));
     }
 }

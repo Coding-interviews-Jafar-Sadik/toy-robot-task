@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ToyRobot {
-    private static final Pattern commandPattern = Pattern.compile("place\\s(\\d),(\\d),\\w+");
+    private static final Pattern commandPattern = Pattern.compile("place\\s+(\\d)\\s*,\\s*(\\d)\\s*,\\s*\\w+");
     public static final int TABLE_SIZE = 5;
 
     private boolean robotOnTable = false;
@@ -14,6 +14,8 @@ public class ToyRobot {
     private int robotY = 0;
 
     public boolean execute(String command) {
+        command = command.trim().toLowerCase();
+
         if (command.startsWith("place")) {
             final Matcher matcher = commandPattern.matcher(command);
             if (matcher.matches()) {

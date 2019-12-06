@@ -6,16 +6,28 @@ import org.toyrobot.test.BaseToyRobotTest;
 public class ToyRobotTest extends BaseToyRobotTest {
     @Test
     public void ignoreUnknownCommand() {
-        assertRobotCommandIgnored(toyRobot.execute("jump"));
+        assertRobotCommandIgnored("jump");
     }
 
     @Test
     public void ignoreNonParameterizedCommand() {
-        assertRobotCommandIgnored(toyRobot.execute("place"));
+        assertRobotCommandIgnored("place");
     }
 
     @Test
     public void ignoreCommandWithWrongParameters() {
-        assertRobotCommandIgnored(toyRobot.execute("place 10,4"));
+        assertRobotCommandIgnored("place 10,4");
+    }
+
+    @Test
+    public void allowWhitespacesInCommand() {
+        assertRobotCommandExecuted("   place    3  ,  3 , south  ");
+        assertRobotCommandExecuted("   move   ");
+    }
+
+    @Test
+    public void allowCommandsWithCapitalLetters() {
+        assertRobotCommandExecuted("   PLACE    3  ,  3 , SOUTH  ");
+        assertRobotCommandExecuted("   MOVE   ");
     }
 }
