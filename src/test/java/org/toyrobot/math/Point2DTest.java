@@ -15,12 +15,12 @@ public class Point2DTest {
     @Test
     public void builderConstructsPoint2d() {
         Point2D point2D = point2d(10, 4);
-        assertEquals(10, point2D.x);
-        assertEquals(4, point2D.y);
+        assertEquals(10, point2D.getX());
+        assertEquals(4, point2D.getY());
     }
 
     @Test
     public void toStringTest() {
-        assertEquals("Point2D{x=10, y=4}", point2d(10, 4).toString());
+        assertEquals("Point2D(x=10, y=4)", point2d(10, 4).toString());
     }
 }
