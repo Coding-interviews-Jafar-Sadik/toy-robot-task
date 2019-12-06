@@ -34,30 +34,31 @@ public class ToyRobot {
                 this.direction = newDirection;
                 this.robotOnTable = true;
             }
-        } else if (command.startsWith("move")) {
-            switch (direction) {
-                case NORTH:
-                    y++;
-                    break;
+        } else if (robotOnTable) {
+            if (command.startsWith("move")) {
+                switch (direction) {
+                    case NORTH:
+                        y++;
+                        break;
 
-                case SOUTH:
-                    y--;
-                    break;
+                    case SOUTH:
+                        y--;
+                        break;
 
-                case EAST:
-                    x++;
-                    break;
+                    case EAST:
+                        x++;
+                        break;
 
-                case WEST:
-                    x--;
-                    break;
+                    case WEST:
+                        x--;
+                        break;
+                }
+            } else if (command.startsWith("left")) {
+
+            } else {
+                return false;
             }
-        } else if (command.startsWith("left")) {
-
-        } else {
-            return false;
         }
-
         return robotOnTable;
     }
 
