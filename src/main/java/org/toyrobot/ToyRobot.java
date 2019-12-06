@@ -12,20 +12,22 @@ public class ToyRobot {
     private int robotX = 0;
     private int robotY = 0;
 
-    public void execute(String command) {
+    public boolean execute(String command) {
         final Matcher matcher = commandPattern.matcher(command);
 
         if (matcher.matches()) {
             int x = Integer.parseInt(matcher.group(1));
             int y = Integer.parseInt(matcher.group(2));
 
-            if (inBounds(x, y)) {
-                this.robotX = x;
-                this.robotY = y;
-            } else {
-                throw new IllegalStateException("An attempt to the place robot outside of table");
+            if (!inBounds(x, y)) {
+                return false;
             }
+
+            this.robotX = x;
+            this.robotY = y;
         }
+
+        return true;
     }
 
     public Point2D getPosition() {
