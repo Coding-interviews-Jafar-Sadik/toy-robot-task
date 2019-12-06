@@ -9,9 +9,27 @@ public class ToyRobotTest {
     private final ToyRobot toyRobot = new ToyRobot();
 
     @Test
-    public void shouldPlaceRobotInTheSouthWestCorner() {
-        toyRobot.execute("place 0, 0, NORTH");
+    public void shouldPlaceRobotInSouthWestCorner() {
+        toyRobot.execute("place 0,0,NORTH");
         assertThat(toyRobot.getPosition()).isEqualTo(point2d(0, 0));
+    }
+
+    @Test
+    public void shouldPlaceRobotInSouthEastCorner() {
+        toyRobot.execute("place 4,0,NORTH");
+        assertThat(toyRobot.getPosition()).isEqualTo(point2d(4, 0));
+    }
+
+    @Test
+    public void shouldPlaceRobotInNorthEastCorner() {
+        toyRobot.execute("place 4,4,NORTH");
+        assertThat(toyRobot.getPosition()).isEqualTo(point2d(4, 4));
+    }
+
+    @Test
+    public void shouldPlaceRobotInNorthWestCorner() {
+        toyRobot.execute("place 0,4,NORTH");
+        assertThat(toyRobot.getPosition()).isEqualTo(point2d(0, 4));
     }
 
     private Point2D point2d(int x, int y) {
