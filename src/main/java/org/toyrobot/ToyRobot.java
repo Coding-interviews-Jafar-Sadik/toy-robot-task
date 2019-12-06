@@ -1,17 +1,19 @@
 package org.toyrobot;
 
+import org.toyrobot.math.Direction;
 import org.toyrobot.math.Point2D;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ToyRobot {
-    private static final Pattern commandPattern = Pattern.compile("place\\s+(\\d)\\s*,\\s*(\\d)\\s*,\\s*\\w+");
+    private static final Pattern commandPattern = Pattern.compile("place\\s+(\\d)\\s*,\\s*(\\d)\\s*,\\s*(\\w+)");
     public static final int TABLE_SIZE = 5;
 
     private boolean robotOnTable = false;
-    private int robotX = 0;
-    private int robotY = 0;
+    private int x = 0;
+    private int y = 0;
+    private Direction direction;
 
     public boolean execute(String command) {
         command = command.trim().toLowerCase();
@@ -19,19 +21,21 @@ public class ToyRobot {
         if (command.startsWith("place")) {
             final Matcher matcher = commandPattern.matcher(command);
             if (matcher.matches()) {
-                int x = Integer.parseInt(matcher.group(1));
-                int y = Integer.parseInt(matcher.group(2));
+                int newX = Integer.parseInt(matcher.group(1));
+                int newY = Integer.parseInt(matcher.group(2));
+                Direction newDirection = Direction.parse(matcher.group(3));
 
-                if (!inBounds(x, y)) {
+                if (!inBounds(newX, newY) || newDirection == Direction.UNKNOWN) {
                     return false;
                 }
 
-                this.robotX = x;
-                this.robotY = y;
+                this.x = newX;
+                this.y = newY;
+                this.direction = newDirection;
                 this.robotOnTable = true;
             }
         } else if (command.startsWith("move")) {
-            robotY++;
+            y++;
         } else if (command.startsWith("left")) {
 
         } else {
@@ -42,7 +46,11 @@ public class ToyRobot {
     }
 
     public Point2D getPosition() {
-        return new Point2D(robotX, robotY);
+        return new Point2D(x, y);
+    }
+
+    public Direction getDirection() {
+        return direction;
     }
 
     private boolean inBounds(int x, int y) {
