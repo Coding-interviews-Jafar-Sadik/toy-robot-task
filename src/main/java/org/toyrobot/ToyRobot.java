@@ -9,6 +9,7 @@ public class ToyRobot {
     private static final Pattern commandPattern = Pattern.compile("place\\s(\\d),(\\d),\\w+");
     public static final int TABLE_SIZE = 5;
 
+    private boolean robotOnTable = false;
     private int robotX = 0;
     private int robotY = 0;
 
@@ -25,9 +26,10 @@ public class ToyRobot {
 
             this.robotX = x;
             this.robotY = y;
+            this.robotOnTable = true;
         }
 
-        return true;
+        return robotOnTable;
     }
 
     public Point2D getPosition() {
