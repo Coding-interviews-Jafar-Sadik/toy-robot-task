@@ -1,19 +1,28 @@
 package org.toyrobot.math;
 
+import java.util.List;
+import java.util.Map;
+
 import static org.toyrobot.math.Point2D.point2d;
 
 public enum Direction {
-    NORTH(0, 1),
-    SOUTH(0, -1),
-    WEST(-1, 0),
-    EAST(1, 0),
-    UNKNOWN(0, 0);
+    NORTH,
+    SOUTH,
+    WEST,
+    EAST,
+    UNKNOWN;
 
-    Direction(int dx, int dy) {
-        this.vector = point2d(dx, dy);
+    public Point2D vector() {
+        return directionVector.get(this);
     }
 
-    public final Point2D vector;
+    public Direction rotateClockwise() {
+        return directionsClockwise.get((directionsClockwise.indexOf(this) + 1) % 4);
+    }
+
+    public Direction rotateAntiClockwise() {
+        return directionsAntiClockwise.get((directionsAntiClockwise.indexOf(this) + 1) % 4);
+    }
 
     public static Direction parse(String direction) {
         try {
@@ -22,4 +31,13 @@ public enum Direction {
             return UNKNOWN;
         }
     }
+
+    private static final List<Direction> directionsClockwise = List.of(NORTH, EAST, SOUTH, WEST);
+    private static final List<Direction> directionsAntiClockwise = List.of(NORTH, WEST, SOUTH, EAST);
+    private static final Map<Direction, Point2D> directionVector = Map.of(
+            NORTH, point2d(0, 1),
+            SOUTH, point2d(0, -1),
+            WEST, point2d(-1, 0),
+            EAST, point2d(1, 0)
+    );
 }

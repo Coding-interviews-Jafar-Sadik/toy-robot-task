@@ -40,9 +40,25 @@ public class DirectionTest {
 
     @Test
     public void shouldReturnDirectionVector() {
-        assertEquals(point2d(0, 1), NORTH.vector);
-        assertEquals(point2d(0, -1), SOUTH.vector);
-        assertEquals(point2d(-1, 0), WEST.vector);
-        assertEquals(point2d(1, 0), EAST.vector);
+        assertEquals(point2d(0, 1), NORTH.vector());
+        assertEquals(point2d(0, -1), SOUTH.vector());
+        assertEquals(point2d(-1, 0), WEST.vector());
+        assertEquals(point2d(1, 0), EAST.vector());
+    }
+
+    @Test
+    public void testRotateDirectionClockwise() {
+        assertEquals(EAST, NORTH.rotateClockwise());
+        assertEquals(SOUTH, EAST.rotateClockwise());
+        assertEquals(WEST, SOUTH.rotateClockwise());
+        assertEquals(NORTH, WEST.rotateClockwise());
+    }
+
+    @Test
+    public void testRotateDirectionAntiClockwise() {
+        assertEquals(WEST, NORTH.rotateAntiClockwise());
+        assertEquals(SOUTH, WEST.rotateAntiClockwise());
+        assertEquals(EAST, SOUTH.rotateAntiClockwise());
+        assertEquals(NORTH, EAST.rotateAntiClockwise());
     }
 }

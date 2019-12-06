@@ -35,13 +35,15 @@ public class ToyRobot {
             }
         } else if (robotOnTable) {
             if (command.startsWith("move")) {
-                Point2D newCoords = coords.add(direction.vector);
+                Point2D newCoords = coords.add(direction.vector());
                 if (outsideTable(newCoords)) {
                     return false;
                 }
                 this.coords = newCoords;
+            } else if (command.startsWith("right")) {
+                direction = direction.rotateClockwise();
             } else if (command.startsWith("left")) {
-
+                direction = direction.rotateAntiClockwise();
             } else {
                 return false;
             }

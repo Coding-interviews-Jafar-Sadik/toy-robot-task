@@ -4,7 +4,8 @@ import org.junit.Test;
 import org.toyrobot.math.Direction;
 import org.toyrobot.test.BaseToyRobotTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.toyrobot.math.Point2D.point2d;
 
 public class ToyRobotDirectionTest extends BaseToyRobotTest {
     @Test
@@ -34,5 +35,21 @@ public class ToyRobotDirectionTest extends BaseToyRobotTest {
     @Test
     public void shouldIgnoreCommandForWrongDirection() {
         assertRobotCommandIgnored("place 3,3,UNKNOWN");
+    }
+
+    @Test
+    public void shouldRotateRobotClockwiseWithoutChangingItsLocation() {
+        toyRobot.execute("place 3,3,NORTH");
+        toyRobot.execute("right");
+        assertEquals(Direction.EAST, toyRobot.getDirection());
+        assertEquals(point2d(3, 3), toyRobot.getPosition());
+    }
+
+    @Test
+    public void shouldRotateRobotAntiClockwiseWithoutChangingItsLocation() {
+        toyRobot.execute("place 3,3,NORTH");
+        toyRobot.execute("left");
+        assertEquals(Direction.WEST, toyRobot.getDirection());
+        assertEquals(point2d(3, 3), toyRobot.getPosition());
     }
 }
