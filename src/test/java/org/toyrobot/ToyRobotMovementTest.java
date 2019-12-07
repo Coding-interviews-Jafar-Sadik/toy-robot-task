@@ -17,7 +17,7 @@ public class ToyRobotMovementTest extends BaseToyRobotTest {
     @Test
     public void shouldMoveRobotNorthByTwoUnits() {
         toyRobot.execute("place 3,0,NORTH");
-        repeat(() -> toyRobot.execute("move"), 2);
+        repeat(idx -> toyRobot.execute("move"), 2);
         assertThat(toyRobot.getPosition()).isEqualTo(point2d(3, 2));
     }
 
@@ -45,35 +45,35 @@ public class ToyRobotMovementTest extends BaseToyRobotTest {
     @Test
     public void shouldMoveRobotEastByFourUnits() {
         toyRobot.execute("place 0,2,EAST");
-        repeat(() -> toyRobot.execute("move"), 4);
+        repeat(idx -> toyRobot.execute("move"), 4);
         assertThat(toyRobot.getPosition()).isEqualTo(point2d(4, 2));
     }
 
     @Test
     public void toyRobotShouldNotLeaveTableWhenMovingNorth() {
         toyRobot.execute("place 0,0,NORTH");
-        repeat(() -> toyRobot.execute("move"), 10);
+        repeat(idx -> toyRobot.execute("move"), 10);
         assertThat(toyRobot.getPosition()).isEqualTo(point2d(0, 4));
     }
 
     @Test
     public void toyRobotShouldNotLeaveTableWhenMovingSouth() {
         toyRobot.execute("place 0,4,SOUTH");
-        repeat(() -> toyRobot.execute("move"), 10);
+        repeat(idx -> toyRobot.execute("move"), 10);
         assertThat(toyRobot.getPosition()).isEqualTo(point2d(0, 0));
     }
 
     @Test
     public void toyRobotShouldNotLeaveTableWhenMovingWest() {
         toyRobot.execute("place 4,0,WEST");
-        repeat(() -> toyRobot.execute("move"), 10);
+        repeat(idx -> toyRobot.execute("move"), 10);
         assertThat(toyRobot.getPosition()).isEqualTo(point2d(0, 0));
     }
 
     @Test
     public void toyRobotShouldNotLeaveTableWhenMovingEast() {
         toyRobot.execute("place 0,0,EAST");
-        repeat(() -> toyRobot.execute("move"), 10);
+        repeat(idx -> toyRobot.execute("move"), 10);
         assertThat(toyRobot.getPosition()).isEqualTo(point2d(4, 0));
     }
 }
