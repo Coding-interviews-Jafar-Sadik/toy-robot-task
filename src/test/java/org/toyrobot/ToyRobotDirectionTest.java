@@ -7,6 +7,7 @@ import org.toyrobot.test.BaseToyRobotTest;
 import static org.junit.Assert.assertEquals;
 import static org.toyrobot.math.Point2D.point2d;
 
+@SuppressWarnings("squid:S1192")
 public class ToyRobotDirectionTest extends BaseToyRobotTest {
     @Test
     public void shouldPlaceToyRobotToFaceNorth() {

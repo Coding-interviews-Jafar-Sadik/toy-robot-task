@@ -26,6 +26,8 @@ public class CommandParser {
             return new LeftCommand();
         } else if (command.startsWith("right")) {
             return new RightCommand();
+        } else if (command.startsWith("report")) {
+            return new ReportCommand();
         }
 
         return new UnknownCommand();

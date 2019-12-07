@@ -4,11 +4,7 @@ import org.junit.Test;
 import org.toyrobot.math.Direction;
 
 import static org.junit.Assert.assertEquals;
-import static org.toyrobot.commands.CommandType.LEFT;
-import static org.toyrobot.commands.CommandType.MOVE;
-import static org.toyrobot.commands.CommandType.PLACE;
-import static org.toyrobot.commands.CommandType.RIGHT;
-import static org.toyrobot.commands.CommandType.UNKNOWN;
+import static org.toyrobot.commands.CommandType.*;
 import static org.toyrobot.math.Point2D.point2d;
 
 public class CommandParserTest {
@@ -35,6 +31,11 @@ public class CommandParserTest {
     @Test
     public void shouldParseRightCommand() {
         assertEquals(RIGHT, parseCommand("right").getType());
+    }
+
+    @Test
+    public void shouldParseReportCommand() {
+        assertEquals(REPORT, parseCommand("report").getType());
     }
 
     @Test

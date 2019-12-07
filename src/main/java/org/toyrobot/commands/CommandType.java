@@ -5,5 +5,6 @@ public enum CommandType {
     MOVE,
     LEFT,
     RIGHT,
+    REPORT,
     UNKNOWN
 }

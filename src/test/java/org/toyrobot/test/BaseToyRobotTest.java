@@ -1,8 +1,10 @@
 package org.toyrobot.test;
 
+import org.mockito.Mockito;
 import org.toyrobot.ToyRobot;
 import org.toyrobot.math.Direction;
 import org.toyrobot.math.Point2D;
+import org.toyrobot.runtime.Runtime;
 
 import java.util.function.Consumer;
 import java.util.stream.IntStream;
@@ -11,7 +13,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public abstract class BaseToyRobotTest {
-    protected final ToyRobot toyRobot = new ToyRobot();
+    protected final Runtime runtimeMock = Mockito.mock(Runtime.class);
+    protected final ToyRobot toyRobot = new ToyRobot(runtimeMock);
     private Point2D prevPosition;
     private Direction prevDirection;
 
