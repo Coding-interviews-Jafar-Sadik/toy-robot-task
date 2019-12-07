@@ -19,3 +19,9 @@ dependencies {
     testCompile 'nl.jqno.equalsverifier:equalsverifier:3.1.10'
     testCompile 'org.mockito:mockito-all:1.9.5'
 }
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'org.toyrobot.ToyRobotApp'
+    }
+}
