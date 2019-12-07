@@ -1,4 +1,4 @@
-## Toy Robot Task, backend java developer  
+## Toy Robot Task  
 
 The solution to [Toy Robot Task](https://zone.github.io/backend/toy-robot) is implemented in `java 11` and built
 with `gradle 5.4`. It uses `lombok` to reduce boilerplate code and some standard testing libraries including
