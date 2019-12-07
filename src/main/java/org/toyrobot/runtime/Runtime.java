@@ -5,9 +5,9 @@ import java.nio.file.Path;
 import java.util.stream.Stream;
 
 public interface Runtime {
-    void print(String text);
-
     Stream<String> readFile(Path filePath) throws IOException;
+
+    void print(String text);
 
     void println();
 }

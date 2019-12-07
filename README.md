@@ -1,33 +1,30 @@
-# WIP
+## Toy Robot Task, backend java developer  
 
-https://sdkman.io
-sdk install java 11.0.5-open
+The solution to [Toy Robot Task](https://zone.github.io/backend/toy-robot) is implemented in `java 11` and built
+with `gradle 5.4`. It uses `lombok` to reduce boilerplate code and some standard testing libraries including
+`junit` and `assertj`. [Github CI](https://github.com/JafarSadik/toy-robot-task/commits/master) pipeline is configured
+to execute tests after every commit.  The required `jdk11+`, can be easily installed with [SDKMan!](https://sdkman.io/install) 
+on linux or mac: `sdk install java 11.0.5-open`
 
-Github CI pipeline runs tests after every commit
-
-The project uses Lombok to reduce boilerplate code. Please install Lombok plugin for your favourite IDE and enable 'annotation processing' option.
-
-Notes:  
-- Currently ToyRobot class implements state pattern to simplify branching logic and avoid checking boolean flag every time. 
-Alternatively state update could be executed directly in command.execute() method. This would allow to test commands independently, 
-implement undo functionality but comes with a greater code complexity which, I believe, is an overkill for this task. 
-- the code has been checked with Sonar Lint and therefore some false warnings were suppressed with @SuppressWarnings
-- the application will fail in an absence of a valid file name
-- in order to save some time I decided not to test `org.toyrobot.runtime.SystemRuntime`
-
-This is a solution to 'Toy Robot' task: 
-https://zone.github.io/backend/toy-robot
-
-Build & run
+### Build & run the project
+Execute the following command on mac or linux: 
 ```bash
 ./gradlew build
-java -jar build/libs/toy-robot-1.0-SNAPSHOT.jar scripts/script1.txt
-java -jar build/libs/toy-robot-1.0-SNAPSHOT.jar scripts/script2.txt
-java -jar build/libs/toy-robot-1.0-SNAPSHOT.jar scripts/script3.txt
-java -jar build/libs/toy-robot-1.0-SNAPSHOT.jar scripts/script4.txt
-java -jar build/libs/toy-robot-1.0-SNAPSHOT.jar scripts/script5.txt
+```
+It's very similar for windows:
+```bash
+gradlew.bat build
+```
+The application comes with 5 scripts containing toy robot commands. Run them as follows: 
+```bash
+java -jar build/libs/toy-robot-1.0.jar scripts/script1.txt
+java -jar build/libs/toy-robot-1.0.jar scripts/script2.txt
+java -jar build/libs/toy-robot-1.0.jar scripts/script3.txt
+java -jar build/libs/toy-robot-1.0.jar scripts/script4.txt
+java -jar build/libs/toy-robot-1.0.jar scripts/script5.txt
 ```
 
-
-Requirements: 
-jdk11+
+### Notes     
+- the code has been checked with Sonar Lint and therefore some false warnings were suppressed with `@SuppressWarnings`
+- in order to save some time I decided not to test `org.toyrobot.runtime.SystemRuntime`
+- the application will fail in an absence of a valid file name 
