@@ -1,0 +1,22 @@
+-- we won't allow toy robot to fall off the table!
+place 2,3,south
+move
+move
+move
+move
+move
+move
+move
+move
+move
+move
+move
+move
+move
+move
+move
+move
+move
+move
+move
+report

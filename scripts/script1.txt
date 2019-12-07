@@ -1,0 +1,3 @@
+-- a really simple script
+place 0,0,NORTH
+report

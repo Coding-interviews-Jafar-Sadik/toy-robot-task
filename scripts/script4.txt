@@ -1,0 +1,15 @@
+-- all commands before a valid place command are discarded
+move
+left
+right
+report
+-- this is not valid (missing direction)
+place 1,2
+move
+-- first valid place command here
+place 1,2,north
+report
+move
+report
+rotate
+report

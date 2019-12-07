@@ -1,0 +1,8 @@
+-- rotation & movement
+place 2,3,west
+left
+right
+left
+left
+move
+report
