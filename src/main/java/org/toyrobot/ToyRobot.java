@@ -6,24 +6,22 @@ import org.toyrobot.commands.CommandType;
 import org.toyrobot.commands.PlaceCommand;
 import org.toyrobot.math.Direction;
 import org.toyrobot.math.Point2D;
-import org.toyrobot.runtime.Runtime;
 
+import java.util.Optional;
+
+import static java.lang.String.format;
 import static org.toyrobot.math.Point2D.point2d;
 
 public class ToyRobot {
     private final CommandParser commandParser = new CommandParser();
-    private final Runtime runtime;
 
     private State currentState = new RobotNotYetOnTable();
     private Point2D position = point2d(0, 0);
     private Direction direction = Direction.UNKNOWN;
 
-    public ToyRobot(Runtime runtime) {
-        this.runtime = runtime;
-    }
-
-    public void execute(String command) {
-        currentState.execute(commandParser.parse(command));
+    public Optional<String> execute(String commandString) {
+        var command = commandParser.parse(commandString);
+        return currentState.execute(command);
     }
 
     public Point2D getPosition() {
@@ -36,19 +34,21 @@ public class ToyRobot {
 
     private class RobotNotYetOnTable implements State {
         @Override
-        public void execute(AbstractCommand command) {
+        public Optional<String> execute(AbstractCommand command) {
             if (command.getType() == CommandType.PLACE) {
-                PlaceCommand placeCommand = (PlaceCommand) command;
+                var placeCommand = (PlaceCommand) command;
                 if (update(placeCommand.getPosition(), placeCommand.getDirection())) {
                     currentState = new RobotOnTable();
                 }
             }
+            return Optional.empty();
         }
     }
 
     private class RobotOnTable implements State {
         @Override
-        public void execute(AbstractCommand command) {
+        public Optional<String> execute(AbstractCommand command) {
+            String message = null;
             switch (command.getType()) {
                 case PLACE:
                     PlaceCommand placeCommand = (PlaceCommand) command;
@@ -68,12 +68,12 @@ public class ToyRobot {
                     break;
 
                 case REPORT:
-                    String report = String.format("=> Output: %d,%d,%s", position.getX(), position.getY(), direction.name());
-                    runtime.print(report);
+                    message = format("Output: %d,%d,%s", position.getX(), position.getY(), direction.name());
                     break;
 
                 default:
             }
+            return Optional.ofNullable(message);
         }
 
         private void updateDirection(Direction newDirection) {
@@ -88,7 +88,7 @@ public class ToyRobot {
     }
 
     private interface State {
-        void execute(AbstractCommand command);
+        Optional<String> execute(AbstractCommand command);
     }
 
     private boolean inBounds(Point2D point) {

@@ -19,7 +19,7 @@ public class Point2DTest {
 
     @Test
     public void builderConstructsPoint2D() {
-        Point2D point2D = point2d(10, 4);
+        var point2D = point2d(10, 4);
         assertEquals(10, point2D.getX());
         assertEquals(4, point2D.getY());
     }

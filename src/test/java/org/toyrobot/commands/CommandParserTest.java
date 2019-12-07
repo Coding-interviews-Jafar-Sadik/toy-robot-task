@@ -12,7 +12,7 @@ public class CommandParserTest {
 
     @Test
     public void shouldParsePlaceCommand() {
-        AbstractCommand command = parseCommand("place 2,3,west");
+        var command = parseCommand("place 2,3,west");
         assertEquals(PLACE, command.getType());
         assertEquals(point2d(2, 3), ((PlaceCommand) command).getPosition());
         assertEquals(Direction.WEST, ((PlaceCommand) command).getDirection());
