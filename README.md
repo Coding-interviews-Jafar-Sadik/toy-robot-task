@@ -18,9 +18,11 @@ This is a solution to 'Toy Robot' task:
 https://zone.github.io/backend/toy-robot
 
 Build & run
+```bash
 gradle build
 java -jar build/libs/toy-robot-1.0-SNAPSHOT.jar scripts/script1.txt
 java -jar build/libs/toy-robot-1.0-SNAPSHOT.jar scripts/script2.txt
 java -jar build/libs/toy-robot-1.0-SNAPSHOT.jar scripts/script3.txt
 java -jar build/libs/toy-robot-1.0-SNAPSHOT.jar scripts/script4.txt
 java -jar build/libs/toy-robot-1.0-SNAPSHOT.jar scripts/script5.txt
+```
