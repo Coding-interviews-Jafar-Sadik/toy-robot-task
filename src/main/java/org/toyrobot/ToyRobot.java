@@ -6,7 +6,6 @@ import org.toyrobot.commands.CommandType;
 import org.toyrobot.commands.PlaceCommand;
 import org.toyrobot.math.Direction;
 import org.toyrobot.math.Point2D;
-import org.toyrobot.runtime.DefaultRuntime;
 import org.toyrobot.runtime.Runtime;
 
 import static org.toyrobot.math.Point2D.point2d;
@@ -18,10 +17,6 @@ public class ToyRobot {
     private State currentState = new RobotNotYetOnTable();
     private Point2D position = point2d(0, 0);
     private Direction direction = Direction.UNKNOWN;
-
-    public ToyRobot() {
-        this(new DefaultRuntime());
-    }
 
     public ToyRobot(Runtime runtime) {
         this.runtime = runtime;
