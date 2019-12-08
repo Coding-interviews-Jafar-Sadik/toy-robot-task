@@ -1,7 +1,6 @@
 package org.toyrobot;
 
 import org.toyrobot.commands.AbstractCommand;
-import org.toyrobot.commands.CommandParser;
 import org.toyrobot.commands.CommandType;
 import org.toyrobot.commands.PlaceCommand;
 import org.toyrobot.math.Direction;
@@ -13,14 +12,11 @@ import static java.lang.String.format;
 import static org.toyrobot.math.Point2D.point2d;
 
 public class ToyRobot {
-    private final CommandParser commandParser = new CommandParser();
-
     private State currentState = new RobotNotYetOnTable();
     private Point2D position = point2d(0, 0);
     private Direction direction = Direction.UNKNOWN;
 
-    public Optional<String> execute(String commandString) {
-        var command = commandParser.parse(commandString);
+    public Optional<String> execute(AbstractCommand command) {
         return currentState.execute(command);
     }
 

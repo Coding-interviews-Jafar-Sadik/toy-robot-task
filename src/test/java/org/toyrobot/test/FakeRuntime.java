@@ -22,16 +22,16 @@ public class FakeRuntime implements Runtime {
     }
 
     @Override
-    public void print(String text) {
-        currentLine += text;
-    }
-
-    @Override
     public Stream<String> readFile(Path filePath) throws IOException {
         if (filePath.equals(this.fakeFilePath)) {
             return Streams.stream(fakeFileContent);
         }
         throw new NoSuchFileException(filePath.toString());
+    }
+
+    @Override
+    public void print(String text) {
+        currentLine += text;
     }
 
     @Override

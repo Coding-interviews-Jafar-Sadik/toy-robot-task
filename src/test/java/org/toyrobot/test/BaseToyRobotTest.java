@@ -1,6 +1,7 @@
 package org.toyrobot.test;
 
 import org.toyrobot.ToyRobot;
+import org.toyrobot.commands.AbstractCommand;
 import org.toyrobot.math.Direction;
 import org.toyrobot.math.Point2D;
 
@@ -15,13 +16,13 @@ public abstract class BaseToyRobotTest {
     private Point2D prevPosition;
     private Direction prevDirection;
 
-    protected void assertRobotCommandIgnored(String robotCommand) throws AssertionError {
+    protected void assertRobotCommandIgnored(AbstractCommand robotCommand) throws AssertionError {
         saveRobotState(toyRobot);
         toyRobot.execute(robotCommand);
         assertFalse("Expected robot command to be ignored: " + robotCommand, hasRobotStateChanged(toyRobot));
     }
 
-    protected void assertRobotCommandExecuted(String robotCommand) throws AssertionError {
+    protected void assertRobotCommandExecuted(AbstractCommand robotCommand) throws AssertionError {
         saveRobotState(toyRobot);
         toyRobot.execute(robotCommand);
         assertTrue("Expected robot command to be executed: " + robotCommand, hasRobotStateChanged(toyRobot));

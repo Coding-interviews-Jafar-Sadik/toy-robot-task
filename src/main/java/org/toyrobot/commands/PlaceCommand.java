@@ -9,7 +9,7 @@ public class PlaceCommand extends AbstractCommand {
     private final Point2D position;
     private final Direction direction;
 
-    protected PlaceCommand(Point2D position, Direction direction) {
+    public PlaceCommand(Point2D position, Direction direction) {
         super(CommandType.PLACE);
         this.position = position;
         this.direction = direction;

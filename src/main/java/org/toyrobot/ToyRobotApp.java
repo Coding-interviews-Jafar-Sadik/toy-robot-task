@@ -1,5 +1,7 @@
 package org.toyrobot;
 
+import org.toyrobot.commands.AbstractCommand;
+import org.toyrobot.commands.CommandParser;
 import org.toyrobot.runtime.Runtime;
 import org.toyrobot.runtime.SystemRuntime;
 
@@ -9,6 +11,7 @@ import java.nio.file.Paths;
 
 public class ToyRobotApp {
     private final ToyRobot toyRobot = new ToyRobot();
+    private final CommandParser commandParser = new CommandParser();
     private final Runtime runtime;
 
     public ToyRobotApp(Runtime runtime) {
@@ -21,8 +24,9 @@ public class ToyRobotApp {
     }
 
     public void executeRobotCommands(Path filePath) throws IOException {
-        runtime.readFile(filePath).forEach(command -> {
-            runtime.print(command);
+        runtime.readFile(filePath).forEach(commandText -> {
+            AbstractCommand command = commandParser.parse(commandText);
+            runtime.print(commandText);
             toyRobot.execute(command).ifPresent(
                     report -> runtime.print(" => " + report)
             );
