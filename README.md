@@ -23,16 +23,16 @@ You need to provide test data/results for the app & its logic.
 ```
 place 0,0,NORTH
 move
-report => Output:0, 1, NORTH
+report => Output: 0, 1, NORTH
 place 0, 0, NORTH
 left
-report => Output:0, 0, WEST
+report => Output: 0, 0, WEST
 place 1,2,EAST
 move
 move
 left
 move
-report => Output:3, 3, NORTH
+report => Output: 3, 3, NORTH
 ```
 
 ### Notes
