@@ -1,30 +1,39 @@
 ## Toy Robot Task  
+You have a toy robot on a table top, a grid of 5 x 5 units, there are no obstructions. You can issue commands to your robot allowing it to roam around the table top. But be careful, don't let it fall off!
 
-The solution to [Toy Robot Task](https://zone.github.io/backend/toy-robot) is implemented in `java 11` and built
-with `gradle 5.4`. It uses `lombok` to reduce boilerplate code and some standard testing libraries including
-`junit` and `assertj`. [Github CI](https://github.com/JafarSadik/toy-robot-task/commits/master) pipeline is configured
-to execute tests after every commit.  The required `jdk11+`, can be easily installed with [SDKMan!](https://sdkman.io/install) 
-on linux or mac: `sdk install java 11.0.5-open`
+### Commands
+The robot should be able to process the following commands.
 
-### Build & run the project
-Execute the following command on mac or linux: 
-```bash
-./gradlew build
+`PLACE X,Y,FACING` Puts the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST. The origin (0,0) can be considered to be the SOUTH WEST most corner. The first valid command to the robot is a PLACE command, after that, any sequence of commands may be issued, in any order, including another PLACE command.The application should discard all commands in the sequence until a valid PLACE command has been executed.
+
+`MOVE` Moves the toy robot one unit forward in the direction it is currently facing.
+
+`LEFT` Will rotate the robot 90° anticlockwise without changing the position of the robot.
+
+`RIGHT` Rotate the robot 90° clockwise without changing the position of the robot.
+
+`REPORT` Outputs the X,Y and F of the robot. This can be in any form, but standard output is sufficient.
+
+### Constraints
+The robot is free to roam around the surface of the table, but must be prevented from falling to destruction.
+Any movement that would result in the robot falling from the table must be prevented, however further valid movement commands must still be allowed. Input can be from a file, or from standard input, as the developer chooses.
+You need to provide test data/results for the app & its logic.
+
+### Example Input & Output
 ```
-It's very similar for windows:
-```bash
-gradlew.bat build
-```
-The application comes with 5 scripts containing toy robot commands. Run them as follows: 
-```bash
-java -jar build/libs/toy-robot-1.0.jar scripts/script1.txt
-java -jar build/libs/toy-robot-1.0.jar scripts/script2.txt
-java -jar build/libs/toy-robot-1.0.jar scripts/script3.txt
-java -jar build/libs/toy-robot-1.0.jar scripts/script4.txt
-java -jar build/libs/toy-robot-1.0.jar scripts/script5.txt
+place 0,0,NORTH
+move
+report => Output:0, 1, NORTH
+place 0, 0, NORTH
+left
+report => Output:0, 0, WEST
+place 1,2,EAST
+move
+move
+left
+move
+report => Output:3, 3, NORTH
 ```
 
-### Notes     
-- the code has been checked with Sonar Lint and therefore some false warnings were suppressed with `@SuppressWarnings`
-- in order to save some time I decided not to test `org.toyrobot.runtime.SystemRuntime`
-- the application will fail in an absence of a valid file name 
+### Notes
+The solution is implemented in `java 11` and built with `gradle 5.4`. It uses `lombok` to reduce boilerplate code and some standard testing libraries including `junit` and `assertj`. [Github CI](https://github.com/JafarSadik/toy-robot-task/commits/master) pipeline is configured to execute tests after every commit.  The required `jdk11+`, can be easily installed with [SDKMan!](https://sdkman.io/install) on linux or mac: `sdk install java 11.0.5-open`
