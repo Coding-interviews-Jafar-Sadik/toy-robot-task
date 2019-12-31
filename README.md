@@ -36,5 +36,5 @@ report => Output: 3, 3, NORTH
 ```
 
 ### Notes
-The solution is implemented in `java 11` and built with `gradle 5.4`. It uses `lombok` to reduce boilerplate code and some standard testing libraries including `junit` and `assertj`. [Github CI](https://github.com/JafarSadik/toy-robot-task/commits/master) pipeline is configured to execute tests after every commit.  The required `jdk11+`, can be easily installed with [SDKMan!](https://sdkman.io/install) on linux or mac: `sdk install java 11.0.5-open`
+The solution is implemented in `java 11` and built with `gradle 5.4`. It uses `lombok` to reduce boilerplate code and some standard testing libraries including `junit` and `assertj`. [Github CI](https://github.com/Coding-interviews-Jafar-Sadik/toy-robot-task/commits/master) pipeline is configured to execute tests after every commit.  The required `jdk11+`, can be easily installed with [SDKMan!](https://sdkman.io/install) on linux or mac: `sdk install java 11.0.5-open`
 
